@@ -12,7 +12,7 @@ require (
 	github.com/go-logr/zerologr v1.2.3
 	github.com/go-playground/validator/v10 v10.12.0
 	github.com/google/go-cmp v0.5.9
-	github.com/metachris/flashbotsrpc v0.5.0
+	github.com/metachris/flashbotsrpc v0.6.0
 	github.com/mitchellh/mapstructure v1.5.0
 	github.com/rs/zerolog v1.29.0
 	github.com/spf13/cobra v1.6.1
