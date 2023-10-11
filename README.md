@@ -13,37 +13,33 @@ See the `Bundler` documentation at [docs.stackup.sh](https://docs.stackup.sh/doc
 ## Prerequisites
 
 - Go 1.19 or later
-- Access to a node with `debug_traceCall` API enabled for custom JavaScript tracing.
+- An RPC endpoint with `debug_traceCall` API enabled with custom JavaScript tracing.
 
 ## Setup
 
-```bash
-# Installs https://github.com/cosmtrek/air for live reloading.
-# Runs go mod tidy.
-make install-dev
+Copy `.env.template` file to `.env` and modify to suit your needs.
 
-# Generates base .env file.
-# All variables in this file are required and should be filled.
-# Running this command WILL override current .env file.
-make generate-environment
-
-# Parses private key in .env file and prints public key and address.
-make fetch-wallet
+```
+cp .env.template .env
+vi .env
 ```
 
 ## Run bundler in `private` mode
 
-Start a local bundler instance:
+Run bundler in `private` mode (i.e. private mempool)
+
+### Run native binary
 
 ```bash
-make dev-private-mode
+go build
+./stackup-bundler start --mode private
 ```
 
-If you need to reset the embedded database:
+### Run in docker
 
 ```bash
-# This will delete the default data directory at /tmp/stackup_bundler
-make dev-reset-default-data-dir
+docker build -t aa-bundler:latest .
+docker run --env-file .env -d --name bundler aa-bundler:latest
 ```
 
 # License

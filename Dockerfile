@@ -7,13 +7,16 @@ WORKDIR /app
 # This allows the container build to reuse cached dependencies.
 # Expecting to copy go.mod and if present go.sum.
 COPY go.* ./
-RUN go mod download
+RUN --mount=type=cache,target=/go/pkg/mod \
+    go mod download -x
 
 # Copy local code to the container image.
 COPY . ./
 
 # Build the binary.
-RUN go build -v -o stackup-bundler
+RUN --mount=type=cache,target=/root/.cache/go-build \
+    --mount=type=cache,target=/go/pkg/mod \
+    go build -v -o stackup-bundler
 
 # Use the official Debian slim image for a lean production container.
 # https://hub.docker.com/_/debian
