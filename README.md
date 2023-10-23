@@ -38,8 +38,8 @@ go build
 ### Run in docker
 
 ```bash
-docker build -t aa-bundler:latest .
-docker run --env-file .env -d --name bundler aa-bundler:latest
+docker build -t stackup-bundler:latest .
+docker run --env-file .env -d --name bundler stackup-bundler:latest
 ```
 
 # License
